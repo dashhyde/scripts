@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Definitions
+
+playlist=/home/santos/Desktop/Playlist.m3u
+output=/home/santos/Desktop/reu
+
+# Copying playlist to directory (output)
+
+# All songs
+grep -v "\#" $playlist > temp_file
+# # of lines
+lines=$(wc -l  < temp_file)
+
+for ((b=1;b<=$lines;b++)); do
+	sound_file=$(sed -n "${b}p;${b}q" temp_file);
+	cp "$sound_file" $output
+	echo $output$sound_file #$b$sound_file
+	if $b==2]; then break fi
+
+done
+rm temp_file
+
+
+# _hyde
+# Last updated: 2013-06-03
+
